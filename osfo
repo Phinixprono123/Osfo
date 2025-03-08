@@ -1,0 +1,49 @@
+#–––––Setting up things–––––#
+# Color codes
+BLACK='\033[0;30m'
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+MAGENTA='\033[0;35m'
+CYAN='\033[0;36m'
+WHITE='\033[0;37m'
+ORANGE='\033[0;38;5;208m'  # Orange color
+PURPLE='\033[0;35m'  # Purple color
+LIGHTBLUE='\033[0;36m'  # Light blue color
+# Weather API Functiom Setup
+API_KEY="0acffd007fa946a7959151054242510"
+CITY="Dhaka"
+
+get_weather() {
+    local response=$(curl -s "http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${CITY}&aqi=no")
+    local temp=$(echo $response | jq '.current.temp_c')
+    local condition=$(echo $response | jq -r '.current.condition.text')
+    echo "${ORANGE}Weather  : ${temp}󰔄, ${condition}"
+}
+
+# Function to display IP address
+get_ip() {
+    local ip=$(curl -s ifconfig.me)
+    echo "${LIGHTBLUE}IP Address 󱛁 : $ip"
+}
+#–––––Display info–––––#
+# Display Image
+chafa ~/.wallpapers/Cutedroid.png --format symbols --symbols vhalf --size 50x50
+
+# Operating system informationi
+echo "${GREEN}OS  : $(uname -o)"
+# Uptime until last reboot
+echo "${YELLOW}Uptime  : $(uptime -p)"
+# IP
+get_ip
+# Memory Usage
+echo "${CYAN}Memory Usage 󰝪 : $(free -h | grep Mem | awk '{print $3 "/" $2}')"
+# Weather information
+get_weather
+# Current date
+echo "${MAGENTA}Date 󰃰 : $(date +"%Y/%m/%d")"
+## Current time
+echo "${BLUE}Time  : $(date +"%I:%M:%S %p")"
+
+
