@@ -12,7 +12,7 @@ ORANGE='\033[0;38;5;208m'  # Orange color
 PURPLE='\033[0;35m'  # Purple color
 LIGHTBLUE='\033[0;36m'  # Light blue color
 # Weather API Functiom Setup
-API_KEY="0acffd007fa946a7959151054242510"
+API_KEY="API_KEY"
 CITY="Dhaka"
 
 get_weather() {
